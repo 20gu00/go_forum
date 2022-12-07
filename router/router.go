@@ -24,5 +24,7 @@ func InitRouter() *gin.Engine {
 			"msg":  "pong",
 		})
 	})
+
+	SetupRouter(r)
 	return r
 }

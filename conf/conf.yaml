@@ -7,7 +7,7 @@ write_timeout: 10
 max_header: 20
 version: "v1"
 start_time: "2022-12-7"
-
+machine_id: 1
 #mysql
 mysql:
   mysql_addr: "127.0.0.1"

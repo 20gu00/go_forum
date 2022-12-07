@@ -10,7 +10,7 @@ import (
 var node *sf.Node
 
 //开始时间 机器唯一标示id
-func Init(startTime string, machineID int64) (err error) {
+func InitSnowFlake(startTime string, machineID int64) (err error) {
 	var st time.Time
 	//string-->time.Time
 	st, err = time.Parse("2006-01-02", startTime) //2006-01-02 15:04:05

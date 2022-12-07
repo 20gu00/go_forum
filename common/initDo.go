@@ -1,7 +1,9 @@
-package setUp
+package common
 
 import (
 	"flag"
+	"fmt"
+	"go_forum/common/snowflake"
 
 	"go.uber.org/zap"
 
@@ -18,28 +20,41 @@ func InitDO() {
 
 	//读取配置文件
 	if err := config.ConfRead(confFile); err != nil {
-		zap.L().Error("读取配置文件失败")
+		fmt.Printf("读取配置文件失败, err:%v\n", err)
 		panic(err)
 	}
 
 	//初始化logger
 	if err := logger.InitLogger(config.Conf.LogConfig, config.Conf.Mode); err != nil {
-		zap.L().Error("初始化logger失败")
+		fmt.Printf("初始化logger失败, err:%v\n", err)
 		panic(err)
 	}
 	defer zap.L().Sync() //写入磁盘
 
 	//初始化mysql连接
 	if err := mysql.InitMysql(config.Conf.MysqlConfig); err != nil {
-		zap.L().Error("初始化mysql失败")
+		fmt.Printf("初始化mysql失败, err:%v\n", err)
 		panic(err)
 	}
 	defer mysql.DBClose()
 
 	//初始化redis连接
 	if err := redis.InitRedis(config.Conf.RedisConfig); err != nil {
-		zap.L().Error("初始化redis失败")
+		fmt.Printf("初始化redis失败, err:%v\n", err)
 		panic(err)
 	}
 	defer redis.RDBClose()
+
+	//雪花算法生成分布式uid
+	if err := snowflake.InitSnowFlake(config.Conf.StartTime, config.Conf.MachineID); err != nil {
+		fmt.Printf("雪花算法生成uid失败, err:%v\n", err)
+		//zap.L().Error("雪花算法生成uid失败")
+		panic(err)
+	}
+
+	//初始化gin内置支持的校验器(validator)的翻译器(en zh)
+	if err := InitTrans("zh"); err != nil {
+		fmt.Printf("初始化validator翻译器失败, err:%v\n", err)
+		return
+	}
 }

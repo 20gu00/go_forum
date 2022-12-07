@@ -32,3 +32,11 @@ https://github.com/bwmarrin/snowflake
 https://github.com/sony/sonyflake
 就是位的分配不同,这个支持到174,上面的支持到64
 
+ctx.Query() /:  ctx.Params() ?xx=xx&&xx=x  前后端分离多数是json(body raw json)
+
+
+
+不应该将后端的错误直接返回给前端
+ShouldBindJSON只会做个格式判断,如果参数少了或者参数不是结构体对应的,不会报错
+gin原生支持validator做参数校验,用的是binding(原生是validator)
+validator提供翻译器,使得提示或者错误输出更加友好(en zh)

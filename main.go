@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"github.com/spf13/viper"
 	"go.uber.org/zap"
-	"go_forum/common/setUp"
+	"go_forum/common"
 	"go_forum/common/setUp/config"
 	"go_forum/router"
 	"net/http"
@@ -25,7 +25,7 @@ import (
 // @host 127.0.0.1:8084
 // @BasePath /api/v1
 func main() {
-	setUp.InitDO()
+	common.InitDO()
 	r := router.InitRouter()
 
 	server := http.Server{
