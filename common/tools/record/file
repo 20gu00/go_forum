@@ -1,0 +1,34 @@
+timestamp datatime类型
+create database forum charset=utf8mb4;
+create table user(id bigint auto_increment primary key,user_id bigint(20) unique not null,username varchar(64) unique not null,password varchar(64) not null,email varchar(64)null,gender tinyint default 0 not null,create_time timestamp default current_timestamp null,update_time timestamp default current_timestamp null on update current_timestamp,unique key `idx_user_id` (user_id),unique key `idx_username` (username))collate=utf8mb4_general_ci;
+普通索引键和主键索引和组合索引键,
+索引键 唯一索引
+on update当字段发生更新时会自动更新为当前时间
+INSERT INTO forum.user (id, user_id, username, password, email, gender, create_time, update_time) VALUES (1, 28018727488323585, 'aaa', '313233343536639a9119599647d841b1bef6ce5ea293', null, 0, '2022-12-2 09:09:09', '2022-12-2 09:09:09');
+INSERT INTO forum.user (id, user_id, username, password, email, gender, create_time, update_time) VALUES (2, 4183532125556736, 'cjq', '313233639a9119599647d841b1bef6ce5ea293', null, 0, '2022-12-2 19:09:09', '2022-12-2 19:09:09');
+
+mysql -u root -p forum < xxx.sql
+mysqldump -u root -p database forum > xxx.sql
+--no-data只备份表结构
+--all-databases全部数据库
+
+id主要是本表用,不要随意暴露,用额外的一个表的比如user_id去操作
+分布式id生成器:全局唯一,递增,高可用,高性能
+雪花算法
+场景:mysql的自增id需求大量暴涨时
+比如秒杀时大量的订单 订单id
+分布式 微服务 高并发
+
+snowflake:64位分布式id:
+可以简单使用而不是分布式
+1bit始终为0,41bit时间戳,10bit工作机器id(5bit数据中心,5bit确切的机器),12bit序列号
+时间戳默认从1970.1.1开始没我们可以自己设置开始时间,毫秒
+每一毫秒1024*4096=4194304
+
+https://github.com/bwmarrin/snowflake
+雪花算法的go实现
+支持动态调整上面的位数
+
+https://github.com/sony/sonyflake
+就是位的分配不同,这个支持到174,上面的支持到64
+
