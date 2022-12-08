@@ -2,6 +2,7 @@ package common
 
 type ResCode int64
 
+//自定义的错误码
 const (
 	CodeSuccess ResCode = 1000 + iota //iota 0
 	CodeInvalidParam

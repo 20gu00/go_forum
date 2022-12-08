@@ -53,3 +53,5 @@ jwt json web token标准,特别适用于分布式站点的单点登录
 签名是针对前面两部分签名,防篡改
 
 jwt-go
+authorization bear token Token(其实也是header,可以手动写hearder Token: Bear xxx
+判断用户是否是登录状态 1.session中能否拿到该用户session 2.请求头中是否有token,token认证
