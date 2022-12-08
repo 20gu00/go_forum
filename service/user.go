@@ -1,6 +1,7 @@
 package service
 
 import (
+	"go_forum/common/jwt"
 	"go_forum/common/snowflake"
 	"go_forum/dao/mysql"
 	"go_forum/model"
@@ -23,5 +24,23 @@ func Register(in *param.RegisterInput) error {
 	}
 	// 数据入库
 	return mysql.InsertUser(userDao)
+}
 
+func Login(p *param.LoginInput) (user *model.User, err error) {
+	user = &model.User{
+		Username: p.Username,
+		Password: p.Password,
+	}
+	// 指针
+	if err := mysql.Login(user); err != nil {
+		return nil, err
+	}
+
+	// 生成JWT
+	token, err := jwt.GenToken(user.UserID, user.Username)
+	if err != nil {
+		return
+	}
+	user.Token = token
+	return
 }

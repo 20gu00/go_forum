@@ -1,6 +1,7 @@
 package mysql
 
 import (
+	"database/sql"
 	"go_forum/common"
 	"go_forum/model"
 )
@@ -37,4 +38,25 @@ func UserIdExist(username string) (err error) {
 	}
 
 	return //nil
+}
+
+// 登录
+func Login(user *model.User) (err error) {
+	//请求参数
+	oPassword := user.Password
+	sqlStr := `select user_id, username, password from user where username=?`
+	err = db.Get(user, sqlStr, user.Username)
+	if err == sql.ErrNoRows { //查询不到对应的记录
+		return common.ErrorUserNotExist
+	}
+	if err != nil {
+		// 查询数据库失败
+		return err
+	}
+	// 判断密码是否正确
+	password := common.MD5(oPassword)
+	if password != user.Password {
+		return common.ErrorInvalidPassword
+	}
+	return
 }
