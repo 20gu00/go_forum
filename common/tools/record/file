@@ -93,3 +93,21 @@ jwt属于access token,过期就失效了,一般accesstoken过期时间短语refr
 时间维度上看,同一时间只有一个登录(两个浏览器也行)
 user_id<->token对应,存储在redis中
 请求带的token先判断是否有效,在通过对应该系拿到redis中的token对比
+
+
+
+
+.PHONY:虚拟命令(目标)
+目标: 需要的文件或者目标
+    命令(多行)
+@command不打印命令
+go vet 检查
+
+
+
+
+Air搭配gin实现热加载
+go get github.com/cosmtrek/air  安装air
+wget https://github.com/cosmtrek/air/releases/download/v1.29.0/air_1.29.0_linux_amd64.tar.gz
+air运行
+air -c .air.conf(默认在当前目录下找配置文件)

@@ -109,3 +109,7 @@
 {"level":"INFO","time":"2022-12-09T17:25:15.159+0800","caller":"logger/logger.go:102","msg":"/ping","status":200,"method":"GET","path":"/ping","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.29.2","errors":"","cost":0.000209}
 {"level":"INFO","time":"2022-12-09T17:25:19.124+0800","caller":"go_forum/main.go:53","msg":"web server启动失败","error":"http: Server closed"}
 {"level":"INFO","time":"2022-12-09T17:25:19.125+0800","caller":"go_forum/main.go:69","msg":"server退出了"}
+{"level":"INFO","time":"2022-12-09T19:04:39.481+0800","caller":"logger/logger.go:53","msg":"初始化logger完成"}
+{"level":"INFO","time":"2022-12-09T19:06:00.039+0800","caller":"logger/logger.go:53","msg":"初始化logger完成"}
+{"level":"INFO","time":"2022-12-09T19:06:05.022+0800","caller":"go_forum/main.go:46","msg":"[Info]","程序名称":"go_forum","程序版本":"v1","server port":8080}
+{"level":"INFO","time":"2022-12-09T19:06:05.022+0800","caller":"logger/logger.go:53","msg":"初始化logger完成"}
