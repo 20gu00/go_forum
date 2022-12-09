@@ -113,3 +113,29 @@
 {"level":"INFO","time":"2022-12-09T19:06:00.039+0800","caller":"logger/logger.go:53","msg":"初始化logger完成"}
 {"level":"INFO","time":"2022-12-09T19:06:05.022+0800","caller":"go_forum/main.go:46","msg":"[Info]","程序名称":"go_forum","程序版本":"v1","server port":8080}
 {"level":"INFO","time":"2022-12-09T19:06:05.022+0800","caller":"logger/logger.go:53","msg":"初始化logger完成"}
+{"level":"INFO","time":"2022-12-09T22:10:44.345+0800","caller":"logger/logger.go:53","msg":"初始化logger完成"}
+{"level":"INFO","time":"2022-12-09T22:10:46.147+0800","caller":"go_forum/main.go:53","msg":"web server启动失败","error":"http: Server closed"}
+{"level":"INFO","time":"2022-12-09T22:10:46.149+0800","caller":"go_forum/main.go:69","msg":"server退出了"}
+{"level":"INFO","time":"2022-12-09T22:20:11.112+0800","caller":"go_forum/main.go:46","msg":"[Info]","程序名称":"go_forum","程序版本":"v1","server port":8080}
+{"level":"INFO","time":"2022-12-09T22:20:11.111+0800","caller":"logger/logger.go:53","msg":"初始化logger完成"}
+{"level":"INFO","time":"2022-12-09T22:20:22.177+0800","caller":"logger/logger.go:102","msg":"/1","status":404,"method":"GET","path":"/1","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.29.2","errors":"","cost":0.00001746}
+{"level":"INFO","time":"2022-12-09T22:20:53.218+0800","caller":"logger/logger.go:102","msg":"/api/v1/community/1","status":404,"method":"GET","path":"/api/v1/community/1","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.29.2","errors":"","cost":0.000032499}
+{"level":"INFO","time":"2022-12-09T22:21:14.865+0800","caller":"logger/logger.go:102","msg":"/api/v1/community/1","status":404,"method":"GET","path":"/api/v1/community/1","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.29.2","errors":"","cost":0.000032761}
+{"level":"INFO","time":"2022-12-09T22:21:22.126+0800","caller":"logger/logger.go:102","msg":"/api/v1/community/1","status":404,"method":"GET","path":"/api/v1/community/1","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.29.2","errors":"","cost":0.000009901}
+{"level":"INFO","time":"2022-12-09T22:22:17.162+0800","caller":"logger/logger.go:53","msg":"初始化logger完成"}
+{"level":"INFO","time":"2022-12-09T22:22:17.165+0800","caller":"go_forum/main.go:46","msg":"[Info]","程序名称":"go_forum","程序版本":"v1","server port":8080}
+{"level":"INFO","time":"2022-12-09T22:22:27.950+0800","caller":"logger/logger.go:102","msg":"/api/v1/community/1","status":404,"method":"GET","path":"/api/v1/community/1","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.29.2","errors":"","cost":0.0000137}
+{"level":"INFO","time":"2022-12-09T22:22:33.929+0800","caller":"logger/logger.go:102","msg":"/api/v1/community/1","status":404,"method":"POST","path":"/api/v1/community/1","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.29.2","errors":"","cost":0.0000189}
+{"level":"INFO","time":"2022-12-09T22:23:09.986+0800","caller":"logger/logger.go:102","msg":"/api/v1/community","status":404,"method":"POST","path":"/api/v1/community","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.29.2","errors":"","cost":0.000045295}
+{"level":"INFO","time":"2022-12-09T22:23:14.218+0800","caller":"logger/logger.go:102","msg":"/api/v1/community","status":200,"method":"GET","path":"/api/v1/community","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.29.2","errors":"","cost":0.022455656}
+{"level":"INFO","time":"2022-12-09T22:23:24.552+0800","caller":"logger/logger.go:102","msg":"/api/v1/community/:1","status":404,"method":"GET","path":"/api/v1/community/:1","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.29.2","errors":"","cost":0.000030796}
+{"level":"INFO","time":"2022-12-09T22:23:32.116+0800","caller":"logger/logger.go:102","msg":"/api/v1/community:1","status":200,"method":"GET","path":"/api/v1/community:1","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.29.2","errors":"","cost":0.000051595}
+{"level":"INFO","time":"2022-12-09T22:24:02.708+0800","caller":"logger/logger.go:102","msg":"/api/v1/community","status":200,"method":"GET","path":"/api/v1/community","query":"id=1","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.29.2","errors":"","cost":0.0021495}
+{"level":"INFO","time":"2022-12-09T22:24:23.588+0800","caller":"logger/logger.go:53","msg":"初始化logger完成"}
+{"level":"INFO","time":"2022-12-09T22:24:31.500+0800","caller":"logger/logger.go:102","msg":"/api/v1/community/1","status":404,"method":"GET","path":"/api/v1/community/1","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.29.2","errors":"","cost":0.00001809}
+{"level":"INFO","time":"2022-12-09T22:25:11.562+0800","caller":"logger/logger.go:53","msg":"初始化logger完成"}
+{"level":"INFO","time":"2022-12-09T22:25:11.564+0800","caller":"go_forum/main.go:46","msg":"[Info]","程序名称":"go_forum","程序版本":"v1","server port":8080}
+{"level":"INFO","time":"2022-12-09T22:25:14.728+0800","caller":"logger/logger.go:102","msg":"/api/v1/community/1","status":200,"method":"GET","path":"/api/v1/community/1","query":"","ip":"127.0.0.1","user-agent":"PostmanRuntime/7.29.2","errors":"","cost":0.006360601}
+{"level":"INFO","time":"2022-12-09T22:34:42.652+0800","caller":"logger/logger.go:53","msg":"初始化logger完成"}
+{"level":"INFO","time":"2022-12-09T22:35:43.048+0800","caller":"logger/logger.go:53","msg":"初始化logger完成"}
+{"level":"INFO","time":"2022-12-09T22:35:43.048+0800","caller":"go_forum/main.go:46","msg":"[Info]","程序名称":"go_forum","程序版本":"v1","server port":8080}

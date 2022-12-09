@@ -2,8 +2,6 @@ package router
 
 import (
 	"github.com/gin-gonic/gin"
-	"go_forum/middleware"
-
 	"go_forum/controller"
 )
 
@@ -17,11 +15,17 @@ func SetupRouter(r *gin.Engine) {
 		user.POST("/login", controller.LoginHandler)
 	}
 
-	apiV1.Use(middleware.JWTMiddleware())
+	//apiV1.Use(middleware.JWTMiddleware())
 
 	{
 		//社区
 		apiV1.GET("/community", controller.CommunityHandler)
+		apiV1.GET("/community/:id", controller.CommunityDetailHandler) //  /community/:id  /1  uri参数
+
+		// 帖子
+		apiV1.POST("/note", controller.CreatePostHandler)
+		apiV1.GET("/note/:id", controller.GetPostDetailHandler) //帖子id
+
 	}
 
 	//设置为发布gin.SetMode(gin.ReleaseMode),默认debug模式,终端信息输出 debug test release
