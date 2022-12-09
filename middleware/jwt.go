@@ -2,7 +2,6 @@ package middleware
 
 import (
 	"go_forum/common"
-	"go_forum/common/controller"
 	"go_forum/common/jwt"
 	"strings"
 
@@ -17,7 +16,7 @@ func JWTMiddleware() func(c *gin.Context) {
 		authHeader := c.Request.Header.Get("Authorization")
 		if authHeader == "" {
 			common.RespErr(c, common.CodeNeedLogin)
-			c.Abort()
+			c.Abort() //ctx不在向下传递(request response)
 			return
 		}
 
@@ -28,6 +27,7 @@ func JWTMiddleware() func(c *gin.Context) {
 			return
 		}
 
+		//验证token是否有效
 		mc, err := jwt.ParseToken(parts[1])
 		if err != nil {
 			common.RespErr(c, common.CodeInvalidToken)
@@ -35,9 +35,17 @@ func JWTMiddleware() func(c *gin.Context) {
 			return
 		}
 
+		if err := jwt.OneTokenIng(string(mc.UserID), parts[1]); err != nil {
+			if err != nil {
+				common.RespErr(c, common.CodeTwoDevice)
+				c.Abort()
+				return
+			}
+		}
+
 		// 将当前请求的userID信息保存到请求的上下文c上
 		// 如果采用session,往往会将用户信息sessionInfo
-		c.Set(controller.CtxUserIDKey, mc.UserID)
+		c.Set(common.CtxUserIDKey, mc.UserID)
 
 		c.Next()
 	}

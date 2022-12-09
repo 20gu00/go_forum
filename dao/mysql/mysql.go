@@ -11,7 +11,13 @@ import (
 var db *sqlx.DB
 
 func InitMysql(cfg *config.MysqlConfig) (err error) {
-	dsn := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?parseTime=true&loc=Local", cfg.UserName, cfg.MysqlPassword, cfg.MysqlAddr, cfg.MysqlPort, cfg.DBName)
+	dsn := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?parseTime=true&loc=Local",
+		cfg.UserName,
+		cfg.MysqlPassword,
+		cfg.MysqlAddr,
+		cfg.MysqlPort,
+		cfg.DBName,
+	)
 	//viper.GetString("mysql.user_name"),
 	//viper.GetString("mysql.password"),
 	//viper.GetString("mysql.addr"),

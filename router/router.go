@@ -1,7 +1,6 @@
 package router
 
 import (
-	"go_forum/middleware"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -18,7 +17,8 @@ func InitRouter() *gin.Engine {
 	)
 
 	//ping
-	r.GET("/ping", middleware.JWTMiddleware(), func(ctx *gin.Context) {
+	//r.GET("/ping", middleware.JWTMiddleware(),func(ctx *gin.Context) {
+	r.GET("/ping", func(ctx *gin.Context) {
 		//ctx.String(http.StatusOK,"ok")
 		ctx.JSON(http.StatusOK, gin.H{
 			"code": 0,

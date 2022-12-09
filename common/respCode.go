@@ -13,6 +13,7 @@ const (
 
 	CodeNeedLogin
 	CodeInvalidToken
+	CodeTwoDevice
 )
 
 var codeMsgMap = map[ResCode]string{

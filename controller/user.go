@@ -56,7 +56,7 @@ func LoginHandler(ctx *gin.Context) {
 			return
 		}
 
-		common.RespMsg(ctx, common.CodeInvalidParam, common.RemoveTopStruct(errs.Translate(trans)))
+		common.RespMsg(ctx, common.CodeInvalidParam, common.RemoveTopStruct(errs.Translate(common.Trans)))
 		return
 	}
 	// 业务逻辑

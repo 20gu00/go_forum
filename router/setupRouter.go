@@ -8,11 +8,11 @@ import (
 
 func SetupRouter(r *gin.Engine) {
 	//user模块
-	r.Group("/user")
+	user := r.Group("/user")
 
 	//用户注册
-	r.POST("/register", controller.RegisterHandler)
-	r.POST("/login", controller.LoginHandler)
+	user.POST("/register", controller.RegisterHandler)
+	user.POST("/login", controller.LoginHandler)
 
 	//设置为发布gin.SetMode(gin.ReleaseMode),默认debug模式,终端信息输出 debug test release
 }

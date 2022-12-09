@@ -6,7 +6,7 @@ read_timeout: 10
 write_timeout: 10
 max_header: 20
 version: "v1"
-start_time: "2022-12-7"
+start_time: "2022-12-07"
 machine_id: 1
 #mysql
 mysql:
@@ -36,3 +36,6 @@ log:
   max_backup: 10  #份
   compress: true
 
+#jwt
+auth:
+  jwt_expire: 10

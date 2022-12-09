@@ -9,7 +9,7 @@ import (
 //每个分布式节点
 var node *sf.Node
 
-//开始时间 机器唯一标示id
+//开始时间 机器唯一标示id  uid
 func InitSnowFlake(startTime string, machineID int64) (err error) {
 	var st time.Time
 	//string-->time.Time

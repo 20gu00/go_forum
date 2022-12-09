@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"flag"
 	"fmt"
 	"github.com/spf13/viper"
 	"go.uber.org/zap"
@@ -15,17 +16,22 @@ import (
 	"time"
 )
 
-// @title bluebell项目接口文档
-// @version 1.0
-// @description Go web开发进阶项目实战课程bluebell
+var c int = 1
 
-// @contact.name liwenzhou
-// @contact.url http://www.liwenzhou.com
-
-// @host 127.0.0.1:8084
-// @BasePath /api/v1
 func main() {
-	initdo.InitDO()
+	var confFile string
+	flag.StringVar(&confFile, "conf", "", "配置文件")
+	flag.Parse()
+	//读取配置文件,加载配置文件需要时间如果用goroutine方式去加载最好主goroutine阻塞一会,不然那拿到的配置值为空
+	if err := config.ConfRead(confFile); err != nil {
+		fmt.Printf("读取配置文件失败, err:%v\n", err)
+		panic(err)
+	}
+	
+	ch := make(chan int)
+	go func() {
+		initdo.InitDO(ch)
+	}()
 	r := router.InitRouter()
 
 	server := http.Server{
@@ -52,6 +58,7 @@ func main() {
 	stop := make(chan os.Signal)
 	signal.Notify(stop, syscall.SIGTERM, syscall.SIGINT)
 	<-stop
+	ch <- c
 
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()

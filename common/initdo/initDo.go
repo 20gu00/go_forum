@@ -1,10 +1,10 @@
 package initdo
 
 import (
-	"flag"
 	"fmt"
 	"go_forum/common"
 	"go_forum/common/snowflake"
+	"time"
 
 	"go.uber.org/zap"
 
@@ -14,22 +14,27 @@ import (
 	"go_forum/dao/redis"
 )
 
-func InitDO() {
-	var confFile string                           //""
-	flag.StringVar(&confFile, "conf", "", "配置文件") //不设置默认值
-	flag.Parse()                                  //一次解析即可 支持-flag xxx   --flag xxx   -flag=xxx   --flag=xxx
+func InitDO(ch chan int) {
+	//var confFile string                           //""
+	//flag.StringVar(&confFile, "conf", "", "配置文件") //不设置默认值
+	//flag.Parse()                                  //一次解析即可 支持-flag xxx   --flag xxx   -flag=xxx   --flag=xxx
 
-	//读取配置文件
-	if err := config.ConfRead(confFile); err != nil {
-		fmt.Printf("读取配置文件失败, err:%v\n", err)
-		panic(err)
-	}
+	////读取配置文件
+	//if err := config.ConfRead(confFile); err != nil {
+	//	fmt.Printf("读取配置文件失败, err:%v\n", err)
+	//	panic(err)
+	//}
 
 	//初始化logger
 	if err := logger.InitLogger(config.Conf.LogConfig, config.Conf.Mode); err != nil {
 		fmt.Printf("初始化logger失败, err:%v\n", err)
 		panic(err)
 	}
+	//Timer定是写入
+	go func() {
+		<-time.NewTimer(1 * time.Hour).C
+		zap.L().Sync()
+	}()
 	defer zap.L().Sync() //写入磁盘
 
 	//初始化mysql连接
@@ -37,14 +42,14 @@ func InitDO() {
 		fmt.Printf("初始化mysql失败, err:%v\n", err)
 		panic(err)
 	}
-	defer mysql.DBClose()
+	//defer mysql.DBClose()
 
 	//初始化redis连接
 	if err := redis.InitRedis(config.Conf.RedisConfig); err != nil {
 		fmt.Printf("初始化redis失败, err:%v\n", err)
 		panic(err)
 	}
-	defer redis.RDBClose()
+	//defer redis.RDBClose()
 
 	//雪花算法生成分布式uid
 	if err := snowflake.InitSnowFlake(config.Conf.StartTime, config.Conf.MachineID); err != nil {
@@ -58,4 +63,7 @@ func InitDO() {
 		fmt.Printf("初始化validator翻译器失败, err:%v\n", err)
 		return
 	}
+
+	<-ch //以函数方式调用的goroutine也会阻塞
+	return
 }
