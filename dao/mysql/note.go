@@ -29,7 +29,7 @@ func GetPostById(pid int64) (post *models.Post, err error) {
 }
 
 // GetPostList 查询帖子列表函数
-func GetPostList(page, size int64) (posts []*models.Post, err error) {
+func GetPostList(page, size int64) (posts []*model.Post, err error) {
 	sqlStr := `select 
 	post_id, title, content, author_id, community_id, create_time
 	from post
@@ -37,7 +37,7 @@ func GetPostList(page, size int64) (posts []*models.Post, err error) {
 	DESC
 	limit ?,?
 	`
-	posts = make([]*models.Post, 0, 2) // 不要写成make([]*models.Post, 2)
+	posts = make([]*model.Post, 0, 2) // 不要写成make([]*models.Post, 2)
 	err = db.Select(&posts, sqlStr, (page-1)*size, size)
 	return
 }

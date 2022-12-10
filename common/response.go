@@ -22,7 +22,7 @@ import (
 type Resp struct {
 	Code ResCode     `json:"code"`
 	Msg  interface{} `json:"msg"`
-	Data interface{} `json:"data,omitempty"`
+	Data interface{} `json:"data,omitempty"` //忽略空的字段
 }
 
 func RespErr(c *gin.Context, code ResCode) {

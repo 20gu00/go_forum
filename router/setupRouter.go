@@ -25,6 +25,7 @@ func SetupRouter(r *gin.Engine) {
 		// 帖子
 		apiV1.POST("/note", controller.CreatePostHandler)
 		apiV1.GET("/note/:id", controller.GetPostDetailHandler) //帖子id
+		apiV1.GET("/notelist", controller.GetPostListHandler)
 
 	}
 

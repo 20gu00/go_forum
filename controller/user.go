@@ -73,7 +73,7 @@ func LoginHandler(ctx *gin.Context) {
 
 	// resp
 	common.RespOK(ctx, gin.H{
-		"user_id":   fmt.Sprintf("%d", user.UserID), // id值大于1<<53-1  int64类型的最大值是1<<63-1
+		"user_id":   fmt.Sprintf("%d", user.UserID), // id值大于1<<53-1  int64类型的最大值是1<<63-1  //接受的参数json反序列化得到的是string  不能string强转  strconv.Atoi()
 		"user_name": user.Username,
 		"token":     user.Token,
 	})

@@ -2,21 +2,11 @@ package redis
 
 import (
 	"errors"
-	"github.com/go-redis/redis"
 	"math"
 	"strconv"
 	"time"
-)
 
-package redis
-
-import (
-"errors"
-"math"
-"strconv"
-"time"
-
-"github.com/go-redis/redis"
+	"github.com/go-redis/redis"
 )
 
 // 推荐阅读
@@ -76,7 +66,9 @@ func CreatePost(postID, communityID int64) error {
 func VoteForPost(userID, postID string, value float64) error {
 	// 1. 判断投票限制
 	// 去redis取帖子发布时间
-	postTime := client.ZScore(getRedisKey(KeyPostTimeZSet), postID).Val()
+	//获取zset的score的值,一般float64类型
+	postTime := rdb.ZScore(getRedisKey(KeyPostTimeZSet), postID).Val()
+	// 大于一个星期的帖子
 	if float64(time.Now().Unix())-postTime > oneWeekInSeconds {
 		return ErrVoteTimeExpire
 	}

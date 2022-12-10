@@ -58,12 +58,12 @@ func GetPostById(pid int64) (data *model.ApiPostDetail, err error) {
 }
 
 // GetPostList 获取帖子列表
-func GetPostList(page, size int64) (data []*models.ApiPostDetail, err error) {
+func GetPostList(page, size int64) (data []*model.ApiPostDetail, err error) {
 	posts, err := mysql.GetPostList(page, size)
 	if err != nil {
 		return nil, err
 	}
-	data = make([]*models.ApiPostDetail, 0, len(posts))
+	data = make([]*model.ApiPostDetail, 0, len(posts))
 
 	for _, post := range posts {
 		// 根据作者id查询作者信息

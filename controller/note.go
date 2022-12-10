@@ -63,7 +63,7 @@ func GetPostDetailHandler(c *gin.Context) {
 // GetPostListHandler 获取帖子列表的处理函数
 func GetPostListHandler(c *gin.Context) {
 	// 获取分页参数
-	page, size := common.GetPageInfo(c)
+	page, size := common.GetPageInfo(c) //offset limit
 	// 获取数据
 	data, err := service.GetPostList(page, size)
 	if err != nil {

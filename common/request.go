@@ -28,7 +28,7 @@ func GetCurrentUserID(c *gin.Context) (userID int64, err error) {
 
 // 分页查询
 func GetPageInfo(c *gin.Context) (int64, int64) {
-	pageStr := c.Query("page")
+	pageStr := c.Query("page") // /?page=1
 	sizeStr := c.Query("size")
 
 	var (

@@ -52,37 +52,6 @@ jwt json web token标准,特别适用于分布式站点的单点登录
 负载可以自定义字段,官方提供的字段iss发行人 exp过期时间 sub主题 aud受众 nbf生效时间 iat签发时间 jti编号时间
 签名是针对前面两部分签名,防篡改
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 jwt-go
 authorization bear token Token(其实也是header,可以手动写hearder Token: Bear xxx
 判断用户是否是登录状态 1.session中能否拿到该用户session 2.请求头中是否有token,token认证
@@ -111,3 +80,12 @@ go get github.com/cosmtrek/air  安装air
 wget https://github.com/cosmtrek/air/releases/download/v1.29.0/air_1.29.0_linux_amd64.tar.gz
 air运行
 air -c .air.conf(默认在当前目录下找配置文件)
+
+后端比如int64类型数据过大,大于前端js的整数的表示的范围,数据失真,解决方法转换成string
+
+
+序列化:->[]byte  将数据转换成json格式
+反序列化:[]byte<- 将json数据转换成go数据
+
+zset key:  score: member
+时间 分数作score
