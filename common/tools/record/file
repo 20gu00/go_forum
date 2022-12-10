@@ -116,9 +116,14 @@ zset	是	        是	    分值	        排行系统，社交
 
 
 
-swag本市是用来描述使用json的restful api接口的描述语言
+swag本市是用来描述使用json的restful api接口的描述语言(body)
 https://github.com/swaggo/gin-swagger
 https://github.com/swaggo/swag
 
 // @BasePath /api/v1 接口公共的前缀
 一般在controller层写gin-swagger的注释
+
+swag init
+air
+http://127.0.0.1:8080/swagger/index.html
+有时候浏览器问题访问不了swag页面就换个浏览器,确切错误F12

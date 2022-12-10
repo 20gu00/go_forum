@@ -83,7 +83,7 @@ func GetPostListHandler(c *gin.Context) {
 // @Accept application/json
 // @Produce application/json
 // @Param Authorization header string true "Bearer JWT"
-// @Param object query models.ParamPostList false "查询参数"
+// @Param object query param.ParamPostList false "查询参数"
 // @Security ApiKeyAuth
 // @Success 200 {object} _ResponsePostList
 // @Router /posts2 [get]
@@ -113,31 +113,3 @@ func GetPostListHandler2(c *gin.Context) {
 	common.RespOK(c, data)
 	// 返回响应
 }
-
-// 根据社区去查询帖子列表
-//func GetCommunityPostListHandler(c *gin.Context) {
-//	// 初始化结构体时指定初始参数
-//	p := &models.ParamCommunityPostList{
-//		ParamPostList: &models.ParamPostList{
-//			Page:  1,
-//			Size:  10,
-//			Order: models.OrderTime,
-//		},
-//	}
-//	//c.ShouldBind()  根据请求的数据类型选择相应的方法去获取数据
-//	//c.ShouldBindJSON() 如果请求中携带的是json格式的数据，才能用这个方法获取到数据
-//	if err := c.ShouldBindQuery(p); err != nil {
-//		zap.L().Error("GetCommunityPostListHandler with invalid params", zap.Error(err))
-//		ResponseError(c, CodeInvalidParam)
-//		return
-//	}
-//
-//	// 获取数据
-//	data, err := logic.GetCommunityPostList(p)
-//	if err != nil {
-//		zap.L().Error("logic.GetPostList() failed", zap.Error(err))
-//		ResponseError(c, CodeServerBusy)
-//		return
-//	}
-//	ResponseSuccess(c, data)
-//}

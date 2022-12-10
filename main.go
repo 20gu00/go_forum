@@ -26,7 +26,7 @@ var c int = 1
 // @contact.name cjq
 // @contact.url github.com/20gu00
 
-// @host 127.0.0.1:8084
+// @host 127.0.0.1:8080
 // @BasePath /api/v1
 func main() {
 	var confFile string
