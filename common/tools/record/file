@@ -89,3 +89,36 @@ air -c .air.conf(默认在当前目录下找配置文件)
 
 zset key:  score: member
 时间 分数作score
+
+
+c.Query  ?xxx=xxx&&xxx=xxx
+c.Param Param
+/:id  /1
+
+
+常用body
+validator库对于空和0或者bool值为假,如果设置了require会报错
+也就是零值,看你的tag对应的字段的数据类型
+json tag是body用的
+
+
+旧的帖子某些数据放mysql即可,不用放redis了,key删除
+set zset都是集合
+
+
+set是对string类型的无序集合，zset是有序的集合
+
+set中的值是不能重复的；
+
+ 	    是否是集合	是否有序	有序实现方式	应用场景
+set	    是	        否	    无	        标签，社交
+zset	是	        是	    分值	        排行系统，社交
+
+
+
+swag本市是用来描述使用json的restful api接口的描述语言
+https://github.com/swaggo/gin-swagger
+https://github.com/swaggo/swag
+
+// @BasePath /api/v1 接口公共的前缀
+一般在controller层写gin-swagger的注释

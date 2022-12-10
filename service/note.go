@@ -6,6 +6,7 @@ import (
 	"go_forum/dao/mysql"
 	"go_forum/dao/redis"
 	"go_forum/model"
+	"go_forum/model/param"
 )
 
 func CreatePost(p *model.Post) (err error) {
@@ -82,7 +83,7 @@ func GetPostList(page, size int64) (data []*model.ApiPostDetail, err error) {
 				zap.Error(err))
 			continue
 		}
-		postDetail := &models.ApiPostDetail{
+		postDetail := &model.ApiPostDetail{
 			AuthorName:      user.Username,
 			Post:            post,
 			CommunityDetail: community,
@@ -92,7 +93,7 @@ func GetPostList(page, size int64) (data []*model.ApiPostDetail, err error) {
 	return
 }
 
-func GetPostList2(p *models.ParamPostList) (data []*models.ApiPostDetail, err error) {
+func GetPostList2(p *param.ParamPostList) (data []*model.ApiPostDetail, err error) {
 	// 2. 去redis查询id列表
 	ids, err := redis.GetPostIDsInOrder(p)
 	if err != nil {
@@ -134,7 +135,7 @@ func GetPostList2(p *models.ParamPostList) (data []*models.ApiPostDetail, err er
 				zap.Error(err))
 			continue
 		}
-		postDetail := &models.ApiPostDetail{
+		postDetail := &model.ApiPostDetail{
 			AuthorName:      user.Username,
 			VoteNum:         voteData[idx],
 			Post:            post,
@@ -146,7 +147,7 @@ func GetPostList2(p *models.ParamPostList) (data []*models.ApiPostDetail, err er
 
 }
 
-func GetCommunityPostList(p *models.ParamPostList) (data []*models.ApiPostDetail, err error) {
+func GetCommunityPostList(p *param.ParamPostList) (data []*model.ApiPostDetail, err error) {
 	// 2. 去redis查询id列表
 	ids, err := redis.GetCommunityPostIDsInOrder(p)
 	if err != nil {
@@ -188,7 +189,7 @@ func GetCommunityPostList(p *models.ParamPostList) (data []*models.ApiPostDetail
 				zap.Error(err))
 			continue
 		}
-		postDetail := &models.ApiPostDetail{
+		postDetail := &model.ApiPostDetail{
 			AuthorName:      user.Username,
 			VoteNum:         voteData[idx],
 			Post:            post,
@@ -200,7 +201,7 @@ func GetCommunityPostList(p *models.ParamPostList) (data []*models.ApiPostDetail
 }
 
 // GetPostListNew  将两个查询帖子列表逻辑合二为一的函数
-func GetPostListNew(p *models.ParamPostList) (data []*models.ApiPostDetail, err error) {
+func GetPostListNew(p *param.ParamPostList) (data []*model.ApiPostDetail, err error) {
 	// 根据请求参数的不同，执行不同的逻辑。
 	if p.CommunityID == 0 {
 		// 查所有

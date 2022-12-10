@@ -17,8 +17,8 @@ func CreatePost(p *model.Post) (err error) {
 }
 
 // GetPostById 根据id查询单个贴子数据
-func GetPostById(pid int64) (post *models.Post, err error) {
-	post = new(models.Post)
+func GetPostById(pid int64) (post *model.Post, err error) {
+	post = new(model.Post)
 	sqlStr := `select
 	post_id, title, content, author_id, community_id, create_time
 	from post
@@ -43,7 +43,7 @@ func GetPostList(page, size int64) (posts []*model.Post, err error) {
 }
 
 // GetPostListByIDs 根据给定的id列表查询帖子数据
-func GetPostListByIDs(ids []string) (postList []*models.Post, err error) {
+func GetPostListByIDs(ids []string) (postList []*model.Post, err error) {
 	sqlStr := `select post_id, title, content, author_id, community_id, create_time
 	from post
 	where post_id in (?)
@@ -55,6 +55,6 @@ func GetPostListByIDs(ids []string) (postList []*models.Post, err error) {
 		return nil, err
 	}
 	query = db.Rebind(query)
-	err = db.Select(&postList, query, args...) // !!!!!!
+	err = db.Select(&postList, query, args...) // args...
 	return
 }

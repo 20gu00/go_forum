@@ -18,6 +18,16 @@ import (
 
 var c int = 1
 
+// @title forum项目接口文档
+// @version v1
+// @description go开发的论坛
+// @termsOfService github.com/20gu00
+
+// @contact.name cjq
+// @contact.url github.com/20gu00
+
+// @host 127.0.0.1:8084
+// @BasePath /api/v1
 func main() {
 	var confFile string
 	flag.StringVar(&confFile, "conf", "", "配置文件")
@@ -27,7 +37,7 @@ func main() {
 		fmt.Printf("读取配置文件失败, err:%v\n", err)
 		panic(err)
 	}
-	
+
 	ch := make(chan int)
 	go func() {
 		initdo.InitDO(ch)

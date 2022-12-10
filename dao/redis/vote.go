@@ -76,7 +76,7 @@ func VoteForPost(userID, postID string, value float64) error {
 
 	// 2. 更新贴子的分数
 	// 先查当前用户给当前帖子的投票记录
-	ov := client.ZScore(getRedisKey(KeyPostVotedZSetPF+postID), userID).Val()
+	ov := rdb.ZScore(getRedisKey(KeyPostVotedZSetPF+postID), userID).Val()
 
 	// 更新：如果这一次投票的值和之前保存的值一致，就提示不允许重复投票
 	if value == ov {
@@ -89,11 +89,13 @@ func VoteForPost(userID, postID string, value float64) error {
 		op = -1
 	}
 	diff := math.Abs(ov - value) // 计算两次投票的差值
-	pipeline := client.TxPipeline()
+	pipeline := rdb.TxPipeline()
+	//原子增加 score member
 	pipeline.ZIncrBy(getRedisKey(KeyPostScoreZSet), op*diff*scorePerVote, postID)
 
 	// 3. 记录用户为该贴子投票的数据
 	if value == 0 {
+		//删除
 		pipeline.ZRem(getRedisKey(KeyPostVotedZSetPF+postID), userID)
 	} else {
 		pipeline.ZAdd(getRedisKey(KeyPostVotedZSetPF+postID), redis.Z{
