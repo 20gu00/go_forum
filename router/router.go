@@ -4,6 +4,7 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	"github.com/prometheus/client_golang/prometheus/promhttp"
 
 	"go_forum/common/setUp/logger"
 )
@@ -26,6 +27,8 @@ func InitRouter() *gin.Engine {
 		})
 	})
 
+	// metrics
+	r.GET("/metrics", gin.WrapH(promhttp.Handler()))
 	SetupRouter(r)
 	return r
 }

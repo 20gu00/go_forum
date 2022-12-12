@@ -191,3 +191,13 @@
 {"level":"INFO","time":"2022-12-10T21:52:39.070+0800","caller":"logger/logger.go:102","msg":"/swagger/favicon-32x32.png","status":200,"method":"GET","path":"/swagger/favicon-32x32.png","query":"","ip":"192.168.23.1","user-agent":"Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36","errors":"","cost":0.0000559}
 {"level":"INFO","time":"2022-12-10T21:52:54.319+0800","caller":"go_forum/main.go:63","msg":"web server启动失败","error":"http: Server closed"}
 {"level":"INFO","time":"2022-12-10T21:52:54.321+0800","caller":"go_forum/main.go:79","msg":"server退出了"}
+{"level":"INFO","time":"2022-12-12T14:17:54.811+0800","caller":"logger/logger.go:53","msg":"初始化logger完成"}
+{"level":"INFO","time":"2022-12-12T14:17:54.815+0800","caller":"go_forum/main.go:56","msg":"[Info]","程序名称":"go_forum","程序版本":"v1","server port":8080}
+{"level":"INFO","time":"2022-12-12T14:17:56.784+0800","caller":"go_forum/main.go:63","msg":"web server启动失败","error":"http: Server closed"}
+{"level":"INFO","time":"2022-12-12T14:17:56.785+0800","caller":"go_forum/main.go:79","msg":"server退出了"}
+{"level":"INFO","time":"2022-12-12T14:30:01.347+0800","caller":"logger/logger.go:53","msg":"初始化logger完成"}
+{"level":"INFO","time":"2022-12-12T14:30:01.348+0800","caller":"go_forum/main.go:56","msg":"[Info]","程序名称":"go_forum","程序版本":"v1","server port":8080}
+{"level":"INFO","time":"2022-12-12T14:30:11.116+0800","caller":"logger/logger.go:102","msg":"/metrics","status":200,"method":"GET","path":"/metrics","query":"","ip":"127.0.0.1","user-agent":"curl/7.29.0","errors":"","cost":0.006623001}
+{"level":"INFO","time":"2022-12-12T14:30:20.462+0800","caller":"logger/logger.go:102","msg":"/metrics","status":200,"method":"GET","path":"/metrics","query":"","ip":"127.0.0.1","user-agent":"curl/7.29.0","errors":"","cost":0.002857018}
+{"level":"INFO","time":"2022-12-12T14:30:25.727+0800","caller":"go_forum/main.go:63","msg":"web server启动失败","error":"http: Server closed"}
+{"level":"INFO","time":"2022-12-12T14:30:25.728+0800","caller":"go_forum/main.go:79","msg":"server退出了"}
