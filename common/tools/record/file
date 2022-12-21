@@ -128,3 +128,15 @@ air
 http://127.0.0.1:8080/swagger/index.html
 有时候浏览器问题访问不了swag页面就换个浏览器,确切错误F12
 curl 127.0.0.1:8080/metrics
+
+
+
+
+单元测试
+go test测试代码的工具,包目录下,_test.go为后缀的源代码文件都是测试的一部分,不会go build
+
+函数名前缀
+单元测试函数(Test) 基准测试函数 示例函数
+
+http测试首选net/http/httptest
+go test指定测试文件所在的目录
