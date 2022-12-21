@@ -201,3 +201,4 @@
 {"level":"INFO","time":"2022-12-12T14:30:20.462+0800","caller":"logger/logger.go:102","msg":"/metrics","status":200,"method":"GET","path":"/metrics","query":"","ip":"127.0.0.1","user-agent":"curl/7.29.0","errors":"","cost":0.002857018}
 {"level":"INFO","time":"2022-12-12T14:30:25.727+0800","caller":"go_forum/main.go:63","msg":"web server启动失败","error":"http: Server closed"}
 {"level":"INFO","time":"2022-12-12T14:30:25.728+0800","caller":"go_forum/main.go:79","msg":"server退出了"}
+{"level":"INFO","time":"2022-12-21T15:03:45.224+0800","caller":"logger/logger.go:53","msg":"初始化logger完成"}

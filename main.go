@@ -8,11 +8,12 @@ import (
 	"go.uber.org/zap"
 	"go_forum/common/initdo"
 	"go_forum/common/setUp/config"
+	"go_forum/dao/mysql"
+	"go_forum/dao/redis"
 	"go_forum/router"
 	"net/http"
 	"os"
 	"os/signal"
-	"syscall"
 	"time"
 )
 
@@ -38,10 +39,8 @@ func main() {
 		panic(err)
 	}
 
-	ch := make(chan int)
-	go func() {
-		initdo.InitDO(ch)
-	}()
+	initdo.InitDO()
+
 	r := router.InitRouter()
 
 	server := http.Server{
@@ -53,10 +52,24 @@ func main() {
 	}
 
 	go func() {
+		if err := server.ListenAndServe(); err != nil && err != http.ErrServerClosed {
+			zap.L().Fatal("listen: %s\n", zap.Error(err))
+		}
+	}()
+
+	fmt.Println("[Info] server port ", viper.GetInt("app_port"))
+
+	quit := make(chan os.Signal, 2)
+	// interrupt中断信号 syscall.SIGTERM, syscall.SIGINT
+	signal.Notify(quit, os.Interrupt)
+	// 空则阻塞,监听第一次中断信号,用于优雅关闭
+	<-quit
+
+	go func() {
 		zap.L().Info("[Info]",
 			zap.String("程序名称", viper.GetString("app_name")),
 			zap.String("程序版本", viper.GetString("version")),
-			zap.Int("server port", viper.GetInt("app_port")),
+			zap.Int("[Info] server port", viper.GetInt("app_port")),
 		)
 		fmt.Println("server port:", viper.GetInt("app_port"))
 		if err := server.ListenAndServe(); err != nil { //阻塞
@@ -65,16 +78,27 @@ func main() {
 
 	}()
 
-	stop := make(chan os.Signal)
-	signal.Notify(stop, syscall.SIGTERM, syscall.SIGINT)
-	<-stop
-	ch <- c
+	go func() {
+		ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+		defer cancel()
 
-	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
-	defer cancel()
-	if err := server.Shutdown(ctx); err != nil {
-		zap.L().Fatal("server不正常退出,shutdown", zap.Error(err))
-	}
+		if err := server.Shutdown(ctx); err != nil {
+			zap.L().Fatal("Gin Server关闭异常:", zap.Error(err))
+		}
+		zap.L().Info("Gin Server成功退出")
 
-	zap.L().Info("server退出了")
+		mysql.DBClose()
+		redis.RDBClose()
+	}()
+
+	go func() {
+		timerC := time.NewTimer(10 * time.Second).C
+		<-timerC
+		fmt.Println("程序正常退出完毕")
+		os.Exit(0)
+	}()
+
+	// 第二次中断信号,直接退出
+	<-quit
+	os.Exit(1)
 }

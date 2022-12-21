@@ -14,7 +14,7 @@ import (
 	"go_forum/dao/redis"
 )
 
-func InitDO(ch chan int) {
+func InitDO() {
 	//var confFile string                           //""
 	//flag.StringVar(&confFile, "conf", "", "配置文件") //不设置默认值
 	//flag.Parse()                                  //一次解析即可 支持-flag xxx   --flag xxx   -flag=xxx   --flag=xxx
@@ -61,9 +61,7 @@ func InitDO(ch chan int) {
 	//初始化gin内置支持的校验器(validator)的翻译器(en zh)
 	if err := common.InitTrans("zh"); err != nil {
 		fmt.Printf("初始化validator翻译器失败, err:%v\n", err)
-		return
 	}
-
-	<-ch //以函数方式调用的goroutine也会阻塞
-	return
+	//<-ch //以函数方式调用的goroutine也会阻塞
+	//return
 }
